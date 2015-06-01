@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.glodon.dao.AreaDao">
+
+	<insert id="insertArea" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO logistics_area(area_name,area_cityid) VALUES
+		(#{area_name},#{area_cityid})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="area_id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<select id="queryArea" resultType="com.glodon.model.Area">
+		SELECT * FROM logistics_area
+	</select>
+
+	<select id="queryAreaById" parameterType="java.lang.Integer"
+		resultType="com.glodon.model.Area">
+		SELECT * FROM logistics_area
+		where area_cityid = #{cityid}
+	</select>
+
+	<update id="updateArea" parameterType="map">
+		update logistics_area set
+		area_name = #{name} where area_id = #{id};
+	</update>
+
+	<delete id="deleteArea" parameterType="map">
+		delete from logistics_area
+		where area_id = #{id};
+	</delete>
+</mapper>

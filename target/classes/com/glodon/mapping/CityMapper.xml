@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.glodon.dao.CityDao">
+
+	<insert id="insertCity" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO logistics_city(city_id,city_name) VALUES (#{city_id},#{city_name})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="city_id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<select id="queryCity"  resultType="com.glodon.model.City">
+		SELECT * FROM logistics_city 
+	</select>
+
+	<update id="updateCity" parameterType="map">
+		update logistics_city set city_name = #{name} where city_id = #{id};
+	</update>
+	
+	<delete id="deleteCity" parameterType="map">
+		delete from logistics_city where city_id = #{id};
+	</delete>
+</mapper>

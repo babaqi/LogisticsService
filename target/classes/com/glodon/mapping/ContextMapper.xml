@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.glodon.dao.ContextDao">
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO logistics_context(context_shop_id,
+		context_address,context_phone,context_price,context_amountofmoney,context_infomation,context_type,context_userid,context_cityid,context_shop_name,context_shop_address,context_user_name,context_timer,context_area_id,context_shop_tel)
+		VALUES
+		(#{context_shop_id},#{context_address},#{context_phone},#{context_price},#{context_amountofmoney},#{context_infomation},#{context_type},#{context_userid},#{context_cityid},#{context_shop_name},#{context_shop_address},#{context_user_name},#{context_timer},#{context_areaid},#{context_shop_tel})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="context_id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<select id="query" parameterType="map" resultType="com.glodon.model.Context">
+		SELECT * FROM
+		logistics_context
+		<where>
+			AND context_type = #{context_type}
+			<if test="areaId != null and areaId != ''">
+				AND context_area_id = #{areaId}
+			</if>
+			<if test="userId != null and userId != ''">
+				AND context_userid = #{userId}
+			</if>
+			<if test="shopId != null and shopId != ''">
+				AND context_shop_id = #{shopId}
+			</if>
+		</where>
+		order by context_timer desc
+		LIMIT
+		#{beginnum}, #{endnum} 
+	</select>
+
+	<select id="movequery" parameterType="map" resultType="com.glodon.model.Context">
+		SELECT *
+		FROM
+		logistics_context
+		where context_type = #{context_type}
+		LIMIT
+		#{beginnum}, #{endnum}
+	</select>
+
+
+	<update id="update" parameterType="map">
+		update logistics_context
+		<set>
+			context_type = #{context_type},
+			<if test="context_userid != null and context_userid != ''">
+				context_userid = #{context_userid},
+			</if>
+			<if test="username != null and username != ''">
+				context_user_name = #{username},
+			</if>
+		</set>
+		where context_id = #{context_id};
+	</update>
+	
+	<update id="webMoveOrder" parameterType="map">
+		update logistics_context
+		set
+		context_userid = #{context_userid},
+		context_user_name = #{context_user_name}
+		where context_id = #{context_id};
+	</update>
+
+
+	<select id="robOrderInfo" parameterType="Integer" resultType="String">
+		SELECT context_type FROM
+		logistics_context where context_id =
+		#{context_id}
+	</select>
+	
+	<select id="queryOrderbydata" parameterType="map" resultType="com.glodon.model.Context">
+		SELECT * FROM
+		logistics_context
+		<where>
+			<if test="userId != null and userId != ''">
+				AND context_userid = #{userId}
+			</if>
+			<if test="shopId != null and shopId != ''">
+				AND context_shop_id = #{shopId}
+			</if>
+				AND context_type = 3
+			<if test="data != null and data != ''">
+				AND	(context_timer between #{data} and #{nextdata})
+				<!-- AND #{nextdata} > context_timer >= #{data} -->
+			</if>
+		</where>
+		order by context_timer desc
+	</select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.glodon.dao.ShopDao">
+
+	<insert id="insertShop" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		logistics_shop(shop_name,shop_address,shop_tel,shop_pwd,shop_city_id,shop_area_id)
+		VALUES
+		(#{shop_name},#{shop_address},#{shop_tel},#{shop_pwd},#{shop_city_id},#{shop_area_id})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="shop_id">
+			SELECT LAST_INSERT_ID() AS ID
+		</selectKey>
+	</insert>
+
+	<select id="queryShop" parameterType="java.lang.String"
+		resultType="com.glodon.model.Shop">
+		SELECT * FROM logistics_shop WHERE shop_name = #{shopname}
+	</select>
+
+	<select id="queryAllShop" resultType="com.glodon.model.Shop">
+		SELECT * FROM
+		logistics_shop
+	</select>
+
+	<delete id="deleteshop" parameterType="map">
+		delete from logistics_shop
+		where shop_id = #{shopId};
+	</delete>
+</mapper>

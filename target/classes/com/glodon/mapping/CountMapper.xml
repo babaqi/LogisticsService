@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.glodon.dao.CountDao">
+
+	<select id="countOrder" parameterType="string"
+		resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM logistics_context WHERE context_timer like #{context_timer})
+	</select>
+
+	<select id="queryOrder" parameterType="map" resultType="com.glodon.model.Context">
+		SELECT * FROM
+		logistics_context
+		<where>
+			<if test="areaid != null and areaid != ''">
+				AND context_area_id = #{areaid}
+			</if>
+			<if test="data != null and data != ''">
+				AND	(context_timer between #{data} and #{nextdata})
+				<!-- AND #{nextdata} > context_timer >= #{data} -->
+			</if>
+		</where>
+		order by context_timer desc
+	</select>
+	
+	
+	<select id="queryUser" parameterType="map" resultType="com.glodon.model.User">
+		SELECT * FROM
+		logistics_user
+		<where>
+			<if test="areaid != null and areaid != ''">
+				AND user_area_id = #{areaid}
+			</if>
+		</where>
+	</select>
+	
+	<select id="queryShop" parameterType="map" resultType="com.glodon.model.Shop">
+		SELECT * FROM
+		logistics_shop
+		<where>
+			<if test="areaid != null and areaid != ''">
+				AND shop_area_id = #{areaid}
+			</if>
+		</where>
+	</select>
+	
+</mapper>

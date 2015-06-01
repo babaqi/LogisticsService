@@ -1,0 +1,79 @@
+@charset "utf-8";
+body,td,th,input,textarea{font-family:Verdana,Geneva,sans-serif;font-size:12px;}
+body{margin:0;background-image:url(bg.png);color:#666;line-height:24px;}
+form{padding:0;margin:0;}
+textarea{resize:none;}
+select{padding:0 !important;}
+select option{padding:6px 12px;}
+input,label{vertical-align:middle;}
+
+#leftListTd>div{cursor:pointer;padding:20px;border-bottom:1px solid #ccc;background-image:-moz-linear-gradient(top,#f9f9f9,#f2f2f2);background-image:-webkit-linear-gradient(top,#f9f9f9,#f2f2f2);}
+#leftListTd>div:hover,#leftListTd>.selected{color:#FFF;font-weight:bold;background-image:-moz-linear-gradient(top,#FE9147,#F56502);background-image:-webkit-linear-gradient(top,#FE9147,#F56502);border-bottom-color:#DB5902;}
+#rightTd{border-left:1px solid #ccc;background-image:url(content-bg.png);}
+#leftListTd,#rightTd{border-top:1px solid #ccc;}
+#rightTitle{font-size:16px;padding:20px;border-bottom:1px solid #ccc;background-image:-moz-linear-gradient(top,#f9f9f9,#f2f2f2);background-image:-webkit-linear-gradient(top,#f9f9f9,#f2f2f2);font-weight:bold;}
+#rightContent{padding:20px;min-height:370px;}
+#bottom{border-top:solid 3px #ccc;background-image:-moz-linear-gradient(top,#f8f8f8,#f2f2f2);background-image:-webkit-linear-gradient(top,#f8f8f8,#f2f2f2);padding:20px;text-align:center;}
+#title{font-size:24px;text-align:center;padding:30px;font-weight:bold;}
+
+#loadingMask{position:absolute;background-color:#000;background-image:url(loading-cylon.svg);background-repeat:no-repeat;background-position:center center;position:fixed;left:0;top:0;width:100%;height:100%;opacity:.5;display:none;}
+
+#mapBox{width:270px;height:254px;position:absolute;border:1px solid #c9c9c9;box-shadow:0 0 3px #c9c9c9;display:none;}
+#mapBoxContent{width:270px;height:220px;}
+#mapBoxCenter{background-color:#F56502;width:4px;height:4px;left:132px;top:141px;position:absolute;border:solid 1px #000000;border-radius:3px;}
+#mapBoxLocationBtn,#mapBoxCloseBtn{text-align:center;background-color:#FCFCFC;padding:5px 0;cursor:pointer;border-bottom:1px solid #ddd;display:inline-block;}
+#mapBoxLocationBtn:hover,#mapBoxCloseBtn:hover{background-color:#f5f5f5;}
+#mapBoxCloseBtn{width:49px;border-left:1px solid #ddd;}
+#mapBoxLocationBtn{width:220px;}
+
+#changeCitySpan{background-color:#FFF;padding:5px 20px;border:solid 1px #ccc;position:relative;display:inline-block;}
+#changeCitySpan div{display:none;position:absolute;left:-1px;top:-1px;box-shadow:0 0 5px #c9c9c9;border:solid 1px #ccc;background-color:#FFF;text-align:left;}
+#changeCitySpan span{padding:5px 20px;display:block;cursor:pointer;white-space:nowrap;}
+#changeCitySpan span:hover{background-color:#f5f5f5;}
+#changeCitySpan:hover div{display:block;}
+
+#helpBtn{position:absolute;right:10px;top:10px;display:block;text-decoration:none;}
+
+.box{border:1px solid #c9c9c9;border-radius:5px;background-color:#FCFCFC;overflow:hidden;}
+.boxTitle{border-top:1px solid #fff;background-image:-moz-linear-gradient(top,#f8f8f8,#f2f2f2);background-image:-webkit-linear-gradient(top,#f8f8f8,#f2f2f2);padding:10px 15px;border-bottom:1px solid #ccc;font-weight:bold;border-radius:5px 5px 0 0;}
+.boxContent{padding:20px;}
+.boxScrool{overflow-y:scroll;overflow-x:hidden;}
+
+.tip{border-color:#d43f3a;color:#d43f3a;text-align:center;padding:10px;}
+
+.textbox{box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset;border:1px solid #ccc;color:#555;padding:6px 12px;border-radius:5px;width:230px;transition:border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s}
+.textbox:focus{border-color:#66afe9;box-shadow:0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);}
+
+.button{background-color:#d9534f;border:1px solid #d43f3a;color:#fff;border-radius:5px;padding:5px 20px;cursor:pointer;}
+.button:hover,.button:focus{border-color:#ac2925;background-color:#d2322d;}
+.button:active{box-shadow:0 3px 5px rgba(0, 0, 0, 0.125) inset;}
+
+.boxTable td{border:1px solid #ddd;border-top:none;border-left:none;padding:10px 20px;}
+.boxTable tr>td:last-child{border-right:none;}
+.boxTable tr:last-child>td{border-bottom:none;}
+.boxTable tr:hover>td{background-color:#f5f5f5;}
+.boxTable .wrong td{color:#d43f3a;}
+
+.pageControl{text-align:center;margin-top:20px;}
+.pageControl .button{padding:5px 10px;margin:0 5px 0 5px;}
+.pageControl .selected{display:inline-block;padding:5px 10px;margin:0 5px 0 5px;}
+
+.ui-datepicker{border:1px solid #c9c9c9;display:none;}
+.ui-widget-header{background-color:#F4F5F6;padding:5px;position:relative;border-bottom:1px solid #DCDEE0;}
+.ui-widget-header > a{background-color:#d9534f;border:1px solid #d43f3a;color:#fff;border-radius:5px;padding:0 20px;cursor:pointer;display:inline-block;}
+.ui-widget-header > a:hover{border-color:#ac2925;background-color:#d2322d;}
+.ui-widget-header > a:active{box-shadow:0 3px 5px rgba(0, 0, 0, 0.125) inset;}
+.ui-datepicker-next{float:right;}
+.ui-datepicker-title{text-align:center;padding-top:5px;}
+.ui-datepicker-calendar{border-collapse:collapse;border-spacing:0;}
+.ui-datepicker-calendar th,.ui-datepicker-calendar td{padding:0;}
+.ui-datepicker-calendar a,.ui-datepicker-calendar span{display:inline-block;padding:5px 0;width:40px;text-align:center;}
+.ui-datepicker-calendar a{text-decoration:none;border-right:1px solid #DCDEE0;color:#000;}
+.ui-state-default:not(a){color:#CCC !important;}
+.ui-datepicker-calendar tr a:last-child{border-right:0 none;}
+.ui-datepicker-calendar th{background-color:#f5f5f5;}
+.ui-datepicker-calendar tr>*{border-bottom:1px solid #ddd;}
+.ui-datepicker-calendar tr:last-child>td{border-bottom:none;}
+.ui-datepicker-calendar td{background-color:#FCFCFC;}
+.ui-datepicker-calendar tr:hover>td{background-color:#f5f5f5;}
+.ui-datepicker-month,.ui-datepicker-year{border:1px solid #C8CACC;padding:5px;border-radius:3px;}
